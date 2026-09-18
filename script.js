@@ -34,7 +34,7 @@
     submitBtn.disabled = loading;
     submitBtn.textContent = loading
       ? "Отправляем..."
-      : "Оставить email";
+      : "Оставить заявку";
   }
 
   function buildPayload() {
@@ -124,7 +124,7 @@
       if (res && res.result === "ok") {
         showStatus(
           "ok",
-          "Готово! Напишем на email, как только гайд выйдет."
+          "Готово! Пришлём гайд на почту, как только он выйдет."
         );
 
         if (typeof window.ym === "function") {
