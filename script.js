@@ -2,7 +2,7 @@
   "use strict";
 
   var GOOGLE_SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycbxpho7ceaHq6Oa9CEu-xd9yYhTXV7UDXNZ5RDssqr5BQA0rWYHW-4UjTQV4XrM4pcg/exec";
+    "https://script.google.com/macros/s/AKfycbxt9rzLtDuYVLmRyi3jFgu5A-RV4H2d7mSfcPp__olhh34W87TDIhWQf5mCd5B9_lE/exec";
 
   var form = document.getElementById("lead-form");
   var statusEl = document.getElementById("form-status");
@@ -34,13 +34,14 @@
     submitBtn.disabled = loading;
     submitBtn.textContent = loading
       ? "Отправляем..."
-      : "Получить гайд";
+      : "Оставить email";
   }
 
   function buildPayload() {
     var fd = new FormData(form);
 
     return {
+      name: (fd.get("name") || "").toString().trim(),
       email: (fd.get("email") || "").toString().trim()
     };
   }
@@ -123,8 +124,12 @@
       if (res && res.result === "ok") {
         showStatus(
           "ok",
-          "Готово! Гайд уже в пути — проверь почту (включая спам)."
+          "Готово! Напишем на email, как только гайд выйдет."
         );
+
+        if (typeof window.ym === "function") {
+          window.ym(112363676, "reachGoal", "lead_submit");
+        }
 
         form.reset();
       } else {

@@ -160,7 +160,14 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow);
 }
 .hero-card-title { margin: 0 0 12px; font-size: 1.15rem; }
-.hero-card-text { color: var(--text-dim); margin: 0 0 20px; font-size: 0.98rem; }
+.hero-card-text { color: var(--text-dim); margin: 0 0 16px; font-size: 0.98rem; }
+.hero-card-price {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
 .hero-card-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
 .tag {
   font-family: var(--font-mono);
@@ -276,6 +283,44 @@ a:hover { text-decoration: underline; }
 .order-copy h2 { margin-bottom: 16px; }
 .order-copy p { color: var(--text-dim); }
 
+.order-price {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow);
+}
+.order-price-amount {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.order-price-label { color: var(--text-dim); font-size: 0.95rem; }
+
+.order-note {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.order-aside { display: grid; gap: 16px; }
+.author-note {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  font-style: italic;
+  padding: 14px 16px;
+  border-left: 3px solid var(--border);
+}
+
 .lead-form {
   display: grid;
   background: var(--surface);
@@ -287,6 +332,8 @@ a:hover { text-decoration: underline; }
 .lead-form h3 { margin-bottom: 8px; }
 .lead-form label { font-size: 0.88rem; color: var(--text-dim); margin: 16px 0 6px; }
 .lead-form label:first-of-type { margin-top: 8px; }
+.lead-form .optional { color: var(--text-dim); font-weight: 400; font-size: 0.8rem; }
+.lead-form .required { color: var(--err); }
 .lead-form input,
 .lead-form select,
 .lead-form textarea {
