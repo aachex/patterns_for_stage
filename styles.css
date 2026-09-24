@@ -21,7 +21,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
 body {
   margin: 0;
@@ -296,6 +296,21 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   padding: 18px 22px;
   box-shadow: var(--shadow);
+  font-family: var(--font-sans);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+}
+.order-price:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(15, 25, 45, 0.1);
+  transform: translateY(-1px);
+}
+.order-price:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.12);
+  border-color: var(--accent);
 }
 .order-price-amount {
   font-family: var(--font-mono);
@@ -304,6 +319,12 @@ a:hover { text-decoration: underline; }
   color: var(--accent);
 }
 .order-price-label { color: var(--text-dim); font-size: 0.95rem; }
+.order-price-hint {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: 100%;
+}
 
 .order-note {
   color: var(--accent);

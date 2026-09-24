@@ -42,7 +42,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <span class="logo">&lt;patterns_for_stage /&gt;</span>
-      <a href="#order" class="btn btn-sm btn-accent">Получить</a>
+      <a href="#lead-form" class="btn btn-sm btn-accent">Получить</a>
     </div>
   </header>
 
@@ -76,7 +76,7 @@
             в задаче, пример решения и оценка сложности — в PDF.
           </p>
           <div class="hero-card-price">Бесплатный предзаказ</div>
-          <button class="btn btn-accent btn-lg btn-block" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Получить первым</button>
+          <button class="btn btn-accent btn-lg btn-block" onclick="document.getElementById('lead-form').scrollIntoView({behavior:'smooth'})">Получить первым</button>
         </div>
       </div>
     </section>
@@ -124,7 +124,7 @@
           <li><span class="topic-num">10</span><span class="topic">Графы и обходы</span></li>
           <li><span class="topic-num">БОНУС</span><span class="topic">Как объяснить решение интервьюеру</span></li>
         </ul>
-        <a href="#order" class="btn btn-accent btn-lg">Получить первым</a>
+        <a href="#lead-form" class="btn btn-accent btn-lg">Получить первым</a>
       </div>
     </section>
 
@@ -172,10 +172,11 @@
             <li>15+ разобранных задач с реальных собеседований</li>
             <li>Домашние задания, которые будут по силам</li>
           </ul>
-          <div class="order-price">
+          <button type="button" class="order-price" aria-label="Оставить заявку">
             <span class="order-price-amount">490 ₽</span>
             <span class="order-price-label">цена после выхода</span>
-          </div>
+            <span class="order-price-hint" aria-hidden="true">оставить заявку →</span>
+          </button>
           <p class="order-note">Твой чит-код для любого собеседования</p>
         </div>
         <div class="order-aside">

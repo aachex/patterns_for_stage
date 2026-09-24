@@ -104,6 +104,18 @@
     }, 20000);
   }
 
+  function focusEmail() {
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(function () {
+      emailInput.focus({ preventScroll: true });
+    }, 500);
+  }
+
+  var priceCard = document.querySelector(".order-price");
+  if (priceCard) {
+    priceCard.addEventListener("click", focusEmail);
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -124,7 +136,7 @@
       if (res && res.result === "ok") {
         showStatus(
           "ok",
-          "Готово! Пришлём гайд на почту, как только он выйдет."
+          "Спасибо! Сообщим тебе, когда гайд будет готов."
         );
 
         if (typeof window.ym === "function") {
