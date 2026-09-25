@@ -168,6 +168,18 @@ a:hover { text-decoration: underline; }
   color: var(--accent);
   margin-bottom: 16px;
 }
+.hero-card-price small {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+.hero-card-free {
+  margin: -6px 0 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ok);
+}
 .hero-card-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
 .tag {
   font-family: var(--font-mono);
@@ -247,6 +259,27 @@ a:hover { text-decoration: underline; }
   font-size: 1.3rem;
   font-weight: 700;
 }
+.structure-list li.is-free { border-left-color: var(--ok); }
+.structure-list li.is-free:hover { border-left-color: var(--ok); }
+.structure-list li.is-free .topic-num { color: var(--ok); }
+.topic-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.topic-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ok);
+  background: rgba(46, 125, 91, 0.08);
+  border: 1px solid var(--ok);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
 
 #content .btn { margin-top: 32px; }
 
@@ -283,50 +316,45 @@ a:hover { text-decoration: underline; }
 .order-copy h2 { margin-bottom: 16px; }
 .order-copy p { color: var(--text-dim); }
 
-.order-price {
+.order-offers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 8px 0 0;
+}
+.offer {
   display: flex;
-  width: fit-content;
-  margin: 0 auto;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 18px 22px;
+  padding: 20px 22px;
   box-shadow: var(--shadow);
-  font-family: var(--font-sans);
-  color: var(--text);
-  cursor: pointer;
-  text-align: center;
-  transition: box-shadow 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
 }
-.order-price:hover {
-  border-color: var(--accent);
-  box-shadow: 0 8px 20px rgba(15, 25, 45, 0.1);
-  transform: translateY(-1px);
-}
-.order-price:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.12);
-  border-color: var(--accent);
-}
-.order-price-amount {
+.offer-free { border-color: var(--ok); }
+.offer-full { background: var(--bg-alt); justify-content: center; }
+.offer-label {
   font-family: var(--font-mono);
-  font-size: 2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.offer-free .offer-label { color: var(--ok); }
+.offer-title { font-weight: 600; font-size: 1.02rem; }
+.offer-hint { color: var(--text-dim); font-size: 0.85rem; }
+.offer-price {
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
   font-weight: 700;
   color: var(--accent);
 }
-.order-price-label { color: var(--text-dim); font-size: 0.95rem; }
-.order-price-hint {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 600;
-  width: 100%;
-}
+.offer .btn { margin-top: 4px; }
 
-.order-note {
+.order-copy .order-note {
   color: var(--accent);
   font-size: 0.95rem;
   font-weight: 600;
@@ -397,6 +425,24 @@ a:hover { text-decoration: underline; }
 .footer-note { color: var(--text-dim); font-size: 0.85rem; margin: 0; max-width: 34rem; }
 .footer-year { color: var(--text-dim); font-size: 0.9rem; }
 
+/* ------- Thanks page ------- */
+.thanks { padding: 96px 0 110px; }
+.thanks-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.thanks-lead { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 32px; }
+.thanks-includes { text-align: left; max-width: 460px; margin: 0 auto 32px; }
+.thanks-includes h2 { font-size: 1.15rem; margin-bottom: 16px; }
+.thanks-includes .hero-checks { margin: 0; }
+.thanks-note {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  font-size: 0.98rem;
+}
+.thanks-note p { margin: 0; color: var(--text-dim); }
+.thanks-contact { color: var(--text-dim); font-size: 0.95rem; margin: 0; }
+
 /* ------- Responsive ------- */
 @media (max-width: 920px) {
   .hero-inner, .order-inner { grid-template-columns: 1fr; }
@@ -404,6 +450,7 @@ a:hover { text-decoration: underline; }
   .cards { grid-template-columns: 1fr; }
   .structure-list { grid-template-columns: 1fr; }
   .method-steps { grid-template-columns: repeat(2, 1fr); }
+  .order-offers { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {

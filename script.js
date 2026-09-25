@@ -2,7 +2,7 @@
   "use strict";
 
   var GOOGLE_SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycbxt9rzLtDuYVLmRyi3jFgu5A-RV4H2d7mSfcPp__olhh34W87TDIhWQf5mCd5B9_lE/exec";
+    "https://script.google.com/macros/s/AKfycbwtDk46dJMYLDhiDEcRngZ80KBzc9odZdeikD2VA_CMfozNUoLT40KIV7yhONCu2mw/exec";
 
   var form = document.getElementById("lead-form");
   var statusEl = document.getElementById("form-status");
@@ -34,7 +34,7 @@
     submitBtn.disabled = loading;
     submitBtn.textContent = loading
       ? "Отправляем..."
-      : "Оставить заявку";
+      : "Получить бесплатную главу";
   }
 
   function buildPayload() {
@@ -111,9 +111,9 @@
     }, 500);
   }
 
-  var priceCard = document.querySelector(".order-price");
-  if (priceCard) {
-    priceCard.addEventListener("click", focusEmail);
+  var scrollTriggers = document.querySelectorAll(".js-scroll-form");
+  for (var i = 0; i < scrollTriggers.length; i++) {
+    scrollTriggers[i].addEventListener("click", focusEmail);
   }
 
   form.addEventListener("submit", function (e) {
@@ -136,7 +136,7 @@
       if (res && res.result === "ok") {
         showStatus(
           "ok",
-          "Спасибо! Сообщим тебе, когда гайд будет готов."
+          "Спасибо! Пришлём главу «Два указателя» в PDF на твою почту."
         );
 
         if (typeof window.ym === "function") {
