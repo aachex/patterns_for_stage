@@ -2,7 +2,7 @@
   "use strict";
 
   var GOOGLE_SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycbyWmnK6icV7uUeoyddR5fu2riUDThk9u00dRdbDqWIjgD6t_GCjUJbKhPOL91QGpS4/exec";
+    "https://script.google.com/macros/s/AKfycbye8lGgydIn3lhJT4nxuIZsHz4iI3Q0sounQIPA2hgYFuUq_ybV4KpZeMBjN4Dh71w/exec";
 
   var form = document.getElementById("lead-form");
   var statusEl = document.getElementById("form-status");
