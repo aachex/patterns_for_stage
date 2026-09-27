@@ -259,15 +259,6 @@ a:hover { text-decoration: underline; }
   text-transform: uppercase;
   padding-top: 4px;
 }
-.structure-list li.is-free { border-left-color: var(--ok); }
-.structure-list li.is-free:hover { border-left-color: var(--ok); }
-.structure-list li.is-free .topic-num { color: var(--ok); }
-.topic-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 .topic-badge {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -280,6 +271,23 @@ a:hover { text-decoration: underline; }
   border-radius: 999px;
   padding: 3px 10px;
 }
+
+/* ------- Freebie (лид-магнит) ------- */
+.freebie {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ok);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  box-shadow: var(--shadow);
+  margin-top: 28px;
+}
+.freebie-title { margin: 0; font-size: 1.15rem; }
+.freebie-text { margin: 0; color: var(--text-dim); max-width: 46rem; }
+#content .freebie .btn { margin-top: 4px; }
 
 #content .btn { margin-top: 32px; }
 

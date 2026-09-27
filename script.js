@@ -12,6 +12,8 @@
 
   if (!form) return;
 
+  var defaultSubmitLabel = submitBtn.textContent;
+
   function showStatus(type, message) {
     statusEl.className = "form-status " + type;
     statusEl.textContent = message;
@@ -34,7 +36,7 @@
     submitBtn.disabled = loading;
     submitBtn.textContent = loading
       ? "Отправляем..."
-      : "Получить бесплатную главу";
+      : defaultSubmitLabel;
   }
 
   function buildPayload() {
@@ -136,7 +138,7 @@
       if (res && res.result === "ok") {
         showStatus(
           "ok",
-          "Спасибо! Прислали главу тебе на почту (не забудь проверить спам)."
+          "Спасибо! Прислали подборку из 5 задач на почту (не забудь проверить спам)."
         );
 
         if (typeof window.ym === "function") {
