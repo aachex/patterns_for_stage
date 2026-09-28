@@ -4,47 +4,40 @@
   var GOOGLE_SHEETS_URL =
     "https://script.google.com/macros/s/AKfycbye8lGgydIn3lhJT4nxuIZsHz4iI3Q0sounQIPA2hgYFuUq_ybV4KpZeMBjN4Dh71w/exec";
 
-  var form = document.getElementById("lead-form");
-  var statusEl = document.getElementById("form-status");
-  var submitBtn = document.getElementById("submit-btn");
+  var leadForm = document.getElementById("lead-form");
+  var leadStatus = document.getElementById("form-status");
+  var leadBtn = document.getElementById("submit-btn");
+  var leadEmail = document.getElementById("email");
+  var formDone = document.getElementById("form-done");
 
-  var emailInput = document.getElementById("email");
+  var LEAD_BTN_LABEL = leadBtn ? leadBtn.textContent : "";
 
-  if (!form) return;
-
-  var defaultSubmitLabel = submitBtn.textContent;
-
-  function showStatus(type, message) {
-    statusEl.className = "form-status " + type;
-    statusEl.textContent = message;
+  function showStatus(el, type, message) {
+    if (!el) return;
+    el.className = "form-status " + type;
+    el.textContent = message;
   }
 
-  function validate() {
-    emailInput.classList.remove("invalid");
-
-    var email = emailInput.value.trim();
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailInput.classList.add("invalid");
-      return false;
-    }
-
-    return true;
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
 
-  function setLoading(loading) {
-    submitBtn.disabled = loading;
-    submitBtn.textContent = loading
-      ? "Отправляем..."
-      : defaultSubmitLabel;
+  function bindValid(input) {
+    if (!input) return;
+    input.addEventListener("input", function () {
+      input.classList.remove("invalid");
+    });
   }
 
-  function buildPayload() {
-    var fd = new FormData(form);
+  function setLoading(btn, loading, idleLabel) {
+    if (!btn) return;
+    btn.disabled = loading;
+    btn.textContent = loading ? "Отправляем..." : idleLabel;
+  }
 
+  function buildPayload(email) {
     return {
-      name: (fd.get("name") || "").toString().trim(),
-      email: (fd.get("email") || "").toString().trim()
+      email: email
     };
   }
 
@@ -106,55 +99,60 @@
     }, 20000);
   }
 
-  function focusEmail() {
-    form.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(function () {
-      emailInput.focus({ preventScroll: true });
-    }, 500);
-  }
+  var scrollTarget = leadForm ? leadForm.parentNode : null;
 
-  var scrollTriggers = document.querySelectorAll(".js-scroll-form");
-  for (var i = 0; i < scrollTriggers.length; i++) {
-    scrollTriggers[i].addEventListener("click", focusEmail);
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    showStatus("", "");
-
-    if (!validate()) {
-      showStatus("err", "Проверь корректность email.");
-      return;
-    }
-
-    setLoading(true);
-
-    var payload = buildPayload();
-
-    jsonp(GOOGLE_SHEETS_URL, payload, function (res) {
-      setLoading(false);
-
-      if (res && res.result === "ok") {
-        showStatus(
-          "ok",
-          "Спасибо! Прислали подборку из 5 задач на почту (не забудь проверить спам)."
-        );
-
-        if (typeof window.ym === "function") {
-          window.ym(112363676, "reachGoal", "lead_submit");
+  function bindScrollTriggers() {
+    var triggers = document.querySelectorAll(".js-scroll-form");
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].addEventListener("click", function () {
+        if (scrollTarget) {
+          scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+      });
+    }
+  }
 
-        form.reset();
-      } else {
-        showStatus(
-          "err",
-          "Ошибка: " +
-            (res && res.message
-              ? res.message
-              : "неизвестная ошибка")
-        );
+  bindScrollTriggers();
+
+  bindValid(leadEmail);
+
+  if (leadForm) {
+    leadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      showStatus(leadStatus, "", "");
+
+      if (!isValidEmail(leadEmail.value.trim())) {
+        leadEmail.classList.add("invalid");
+        showStatus(leadStatus, "err", "Проверь корректность email.");
+        return;
       }
+
+      setLoading(leadBtn, true, LEAD_BTN_LABEL);
+
+      var email = leadEmail.value.trim();
+
+      jsonp(GOOGLE_SHEETS_URL, buildPayload(email), function (res) {
+        setLoading(leadBtn, false, LEAD_BTN_LABEL);
+
+        if (res && res.result === "ok") {
+          leadForm.hidden = true;
+          formDone.hidden = false;
+
+          if (typeof window.ym === "function") {
+            window.ym(112363676, "reachGoal", "lead_submit");
+          }
+        } else {
+          showStatus(
+            leadStatus,
+            "err",
+            "Ошибка: " +
+              (res && res.message
+                ? res.message
+                : "неизвестная ошибка")
+          );
+        }
+      });
     });
-  });
+  }
 })();
