@@ -137,7 +137,7 @@ a:hover { text-decoration: underline; }
 }
 .hero-inner {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 48px;
   align-items: center;
 }
@@ -153,57 +153,6 @@ a:hover { text-decoration: underline; }
   top: 0;
   color: var(--ok);
   font-weight: 700;
-}
-
-/* ------- Preview (фрагмент разбора) ------- */
-.hero-preview { max-width: 480px; }
-.preview {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 22px 24px;
-  box-shadow: 0 14px 34px rgba(15, 25, 45, 0.1);
-  font-size: 0.94rem;
-}
-.preview-head { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-dim);
-  background: var(--bg-alt);
-}
-.preview-kicker {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 14px 0 4px;
-}
-.preview-bars { display: grid; gap: 8px; margin-top: 4px; }
-.preview-bar {
-  display: block;
-  height: 12px;
-  border-radius: 6px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-}
-.preview-block-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-dim);
-  margin: 14px 0 2px;
-}
-.preview-line { margin: 0; }
-.preview-complexity {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 2px 0 0;
 }
 
 /* ------- Audience ------- */
@@ -320,7 +269,6 @@ a:hover { text-decoration: underline; }
 
 /* ------- Responsive ------- */
 @media (max-width: 920px) {
-  .hero-inner { grid-template-columns: 1fr; }
   .header-nav a:not(.btn):not(.logo) { display: none; }
 }
 
